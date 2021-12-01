@@ -1,0 +1,12 @@
+[submodule "Advent-of-Code-2018"]
+	path = Advent-of-Code-2018
+	url = https://github.com/Recursing/Advent-of-Code-2018
+[submodule "Advent-of-Code-2017"]
+	path = Advent-of-Code-2017
+	url = https://github.com/Recursing/Advent-of-Code-2017
+[submodule "Advent-of-Code-2019"]
+	path = Advent-of-Code-2019
+	url = https://github.com/Recursing/Advent-of-Code-2019
+[submodule "Advent-of-Code-2020"]
+	path = Advent-of-Code-2020
+	url = https://github.com/Recursing/Advent-of-Code-2020
