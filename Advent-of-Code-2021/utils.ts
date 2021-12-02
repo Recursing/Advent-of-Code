@@ -28,3 +28,10 @@ export async function readDay(n: number): Promise<string[]> {
   const paddedN = String(n).padStart(2, "0");
   return (await Deno.readTextFile(`./day${paddedN}.txt`)).split("\n");
 }
+
+export function isIn<T1 extends T2, T2>(
+  array: Readonly<T1[]>,
+  value: T2
+): value is T1 {
+  return array.includes(value as T1);
+}
