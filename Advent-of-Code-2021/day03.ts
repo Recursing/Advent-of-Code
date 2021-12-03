@@ -2,7 +2,7 @@ import * as utils from "./utils.ts";
 
 const lines = await utils.readDay(3);
 const numbers: Readonly<number[][]> = lines.map((line) =>
-  [...line].map((el) => parseInt(el, 10))
+  [...line].map(Number)
 );
 const BIT_LENGTH = numbers[0].length;
 function bitsToInt(bits: number[]): number {
@@ -12,7 +12,7 @@ const mostCommonValues = numbers
   .map((value) => new utils.Vec(value))
   .reduce((vec, acc) => acc.add(vec), utils.Vec.zeros(BIT_LENGTH))
   .values.map((total) => total >= numbers.length / 2)
-  .map((bool) => +bool);
+  .map(Number);
 const leastCommonValues = mostCommonValues.map((v) => 1 - v);
 console.log(bitsToInt(mostCommonValues) * bitsToInt(leastCommonValues));
 

@@ -5,7 +5,7 @@ const instructions = await utils.readDay(2);
 let [horizontal, depth] = [0, 0];
 for (const line of instructions) {
   const [direction, X] = line.split(" ");
-  const amount = parseInt(X, 10);
+  const amount = Number(X);
   switch (direction) {
     case "up":
       depth -= amount;
@@ -24,7 +24,7 @@ horizontal = depth = 0;
 let aim = 0;
 for (const line of instructions) {
   const [direction, X] = line.split(" ");
-  const amount = parseInt(X, 10);
+  const amount = Number(X);
   switch (direction) {
     case "up":
       aim -= amount;
@@ -49,7 +49,7 @@ const parseLine = (line: string): [Direction, number] => {
   if (!utils.isIn(DIRECTIONS, direction)) {
     throw Error(`"${direction}" is not a valid direction`);
   }
-  return [direction, parseInt(amount, 10)];
+  return [direction, Number(amount)];
 };
 
 // part 1
