@@ -35,3 +35,15 @@ export function isIn<T1 extends T2, T2>(
 ): value is T1 {
   return array.includes(value as T1);
 }
+
+export class Vec {
+  constructor(public readonly values: number[]) {}
+
+  public add(other: Vec) {
+    return new Vec(zip(this.values, other.values).map(([a, b]) => a + b));
+  }
+
+  public static zeros(length: number) {
+    return new Vec(range(length).map(() => 0));
+  }
+}
