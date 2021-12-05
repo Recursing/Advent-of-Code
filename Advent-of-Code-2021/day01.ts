@@ -1,6 +1,6 @@
 import * as utils from "./utils.ts";
 
-const nums = (await utils.readDay(1)).map(Number);
+const nums = utils.readDay(1).map(Number);
 let pairs = utils.zip(nums, nums.slice(1));
 console.log(utils.count(pairs, ([a, b]) => a < b));
 pairs = utils.zip(nums, nums.slice(3));

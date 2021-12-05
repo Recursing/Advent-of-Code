@@ -24,9 +24,9 @@ export function zip<T extends unknown[][]>(
   return range(minLength).map((i) => args.map((arr) => arr[i]));
 }
 
-export async function readDay(n: number): Promise<string[]> {
+export function readDay(n: number): string[] {
   const paddedN = String(n).padStart(2, "0");
-  return (await Deno.readTextFile(`./day${paddedN}.txt`)).split("\n");
+  return Deno.readTextFileSync(`./day${paddedN}.txt`).split("\n");
 }
 
 export function isIn<T1 extends T2, T2>(

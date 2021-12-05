@@ -1,6 +1,6 @@
 import * as utils from "./utils.ts";
 
-const lines = await utils.readDay(3);
+const lines = utils.readDay(3);
 const numbers: Readonly<number[][]> = lines.map((line) =>
   [...line].map(Number)
 );

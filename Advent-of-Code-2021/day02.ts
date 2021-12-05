@@ -1,5 +1,5 @@
 import * as utils from "./utils.ts";
-const instructions = await utils.readDay(2);
+const instructions = utils.readDay(2);
 
 // Straightforward solutions
 let [horizontal, depth] = [0, 0];
