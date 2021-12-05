@@ -1,3 +1,5 @@
+import { assert } from "https://deno.land/std@0.117.0/testing/asserts.ts";
+
 // built-ins I miss from python
 // don't want to import lodash but maybe I should, it has everything here
 
@@ -47,3 +49,14 @@ export class Vec {
     return new Vec(range(length).map(() => 0));
   }
 }
+
+export function chunks<T>(arr: T[], size: number): T[][] {
+  assert(Number.isInteger(arr.length / size));
+  return range(arr.length / size).map((i) =>
+    range(size).map((j) => arr[i * size + j])
+  );
+}
+
+export type DeepReadonly<T> = {
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
