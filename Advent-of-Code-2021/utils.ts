@@ -14,8 +14,22 @@ export function count<T>(
   return array.filter(condition).length;
 }
 
-export function range(end: number): number[] {
-  return [...Array(end).keys()];
+export function range(
+  start: number,
+  end?: number,
+  inclusive = false
+): number[] {
+  if (end === undefined) {
+    end = start;
+    start = 0;
+  }
+  let length = Math.abs(end - start);
+  if (inclusive) {
+    length += 1;
+  }
+  return [...Array(length).keys()].map((index) =>
+    end! > start ? start + index : start - index
+  );
 }
 
 export function zip<T extends unknown[][]>(
@@ -60,3 +74,8 @@ export function chunks<T>(arr: T[], size: number): T[][] {
 export type DeepReadonly<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>;
 };
+
+export function product<T1, T2>(arr1: T1[], arr2: T2[]): [T1, T2][] {
+  // @ts-expect-error ts doesn't preserve information over map
+  return arr1.flatMap((val1) => arr2.map((val2) => [val1, val2]));
+}
