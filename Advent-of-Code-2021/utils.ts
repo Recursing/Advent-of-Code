@@ -53,7 +53,7 @@ export function isIn<T1 extends T2, T2>(
 }
 
 export class Vec {
-  constructor(public readonly values: number[]) {}
+  constructor(public readonly values: number[]) { }
 
   public add(other: Vec) {
     return new Vec(zip(this.values, other.values).map(([a, b]) => a + b));
@@ -78,4 +78,14 @@ export type DeepReadonly<T> = {
 export function product<T1, T2>(arr1: T1[], arr2: T2[]): [T1, T2][] {
   // @ts-expect-error ts doesn't preserve information over map
   return arr1.flatMap((val1) => arr2.map((val2) => [val1, val2]));
+}
+
+export function neighbors(y: number, x: number, height: number, width: number): [number, number][] {
+  return [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    .map(([dy, dx]): [number, number] => [y + dy, x + dx])
+    .filter(([ny, nx]) => 0 <= ny && ny < height && 0 <= nx && nx < width);
+}
+
+export function repeat<T>(arr: T[], times: number): T[] {
+  return range(times).flatMap(() => arr);
 }
