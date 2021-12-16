@@ -9,7 +9,7 @@ export function sum(array: number[]): number {
 
 export function count<T>(
   array: Array<T>,
-  condition: (arg0: T, index: number) => boolean
+  condition: (arg0: T, index: number) => boolean,
 ): number {
   return array.filter(condition).length;
 }
@@ -17,7 +17,7 @@ export function count<T>(
 export function range(
   start: number,
   end?: number,
-  inclusive = false
+  inclusive = false,
 ): number[] {
   if (end === undefined) {
     end = start;
@@ -47,13 +47,13 @@ export function readDay(n: number): string[] {
 
 export function isIn<T1 extends T2, T2>(
   array: Readonly<T1[]>,
-  value: T2
+  value: T2,
 ): value is T1 {
   return array.includes(value as T1);
 }
 
 export class Vec {
-  constructor(public readonly values: number[]) { }
+  constructor(public readonly values: number[]) {}
 
   public add(other: Vec) {
     return new Vec(zip(this.values, other.values).map(([a, b]) => a + b));
@@ -80,7 +80,12 @@ export function product<T1, T2>(arr1: T1[], arr2: T2[]): [T1, T2][] {
   return arr1.flatMap((val1) => arr2.map((val2) => [val1, val2]));
 }
 
-export function neighbors(y: number, x: number, height: number, width: number): [number, number][] {
+export function neighbors(
+  y: number,
+  x: number,
+  height: number,
+  width: number,
+): [number, number][] {
   return [[-1, 0], [1, 0], [0, -1], [0, 1]]
     .map(([dy, dx]): [number, number] => [y + dy, x + dx])
     .filter(([ny, nx]) => 0 <= ny && ny < height && 0 <= nx && nx < width);

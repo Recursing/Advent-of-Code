@@ -4,7 +4,7 @@ grid = [[int(c) for c in row.strip()] for row in open("day15.txt").readlines()]
 
 
 def solve(grid: list[list[int]]) -> int:
-    distances = [[2**31 for _ in row] for row in grid]
+    distances = [[2 ** 31 for _ in row] for row in grid]
     distances[0][0] = 0
     HEIGHT = len(grid)
     WIDTH = len(grid[0])
