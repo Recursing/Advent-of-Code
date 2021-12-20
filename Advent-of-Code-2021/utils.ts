@@ -76,8 +76,7 @@ export type DeepReadonly<T> = {
 };
 
 export function product<T1, T2>(arr1: T1[], arr2: T2[]): [T1, T2][] {
-  // @ts-expect-error ts doesn't preserve information over map
-  return arr1.flatMap((val1) => arr2.map((val2) => [val1, val2]));
+  return arr1.flatMap((val1) => arr2.map((val2): [T1, T2] => [val1, val2]));
 }
 
 export function neighbors(
@@ -94,3 +93,17 @@ export function neighbors(
 export function repeat<T>(arr: T[], times: number): T[] {
   return range(times).flatMap(() => arr);
 }
+
+export function pairs<T>(arr: T[]): [T, T][] {
+  const ret: [T, T][] = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      ret.push([arr[i], arr[j]]);
+    }
+  }
+  return ret;
+}
+
+export type Replace<OriginalType, Keys extends keyof OriginalType, NewType> =
+  & Omit<OriginalType, Keys>
+  & { [K in Keys]: NewType };
