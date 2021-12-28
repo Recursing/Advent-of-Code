@@ -14,7 +14,7 @@ function checkY(dy0: number): boolean {
   return y >= minY;
 }
 
-const validDys = utils.range(-minY + 1).filter(checkY);
+const validDys = utils.rangeInclusive(0, -minY).filter(checkY);
 const maxvalidDy = validDys[validDys.length - 1];
 console.log(maxvalidDy * (maxvalidDy + 1) / 2);
 
@@ -36,7 +36,10 @@ function checkVelocity([dx0, dy0]: [number, number]): boolean {
 }
 
 console.log(
-  utils.product(utils.range(0, maxX, true), utils.range(minY, -minY, true))
+  utils.product(
+    utils.rangeInclusive(0, maxX),
+    utils.rangeInclusive(minY, -minY),
+  )
     .filter(
       checkVelocity,
     ).length,

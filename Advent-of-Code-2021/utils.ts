@@ -32,7 +32,14 @@ export function range(
   );
 }
 
-export function zip<T extends unknown[][]>(
+export function rangeInclusive(
+  start: number,
+  end: number,
+) {
+  return range(start, end, true);
+}
+
+export function zip<T extends Readonly<unknown[]>[]>(
   ...args: T
 ): { [K in keyof T]: T[K] extends (infer V)[] ? V : never }[] {
   const minLength = Math.min(...args.map((arr) => arr.length));
@@ -77,6 +84,19 @@ export type DeepReadonly<T> = {
 
 export function product<T1, T2>(arr1: T1[], arr2: T2[]): [T1, T2][] {
   return arr1.flatMap((val1) => arr2.map((val2): [T1, T2] => [val1, val2]));
+}
+export function product3<T1, T2, T3>(
+  arr1: T1[],
+  arr2: T2[],
+  arr3: T3[],
+): [T1, T2, T3][] {
+  return arr1.flatMap((val1) =>
+    arr2.flatMap((val2) =>
+      arr3.map(
+        (val3): [T1, T2, T3] => [val1, val2, val3],
+      )
+    )
+  );
 }
 
 export function neighbors(
