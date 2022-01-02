@@ -27,13 +27,13 @@ positions_for_number: dict[int, tuple[int, ...]] = {
 number_from_positions = {frozenset(v): k for k, v in positions_for_number.items()}
 
 
-numbers_by_size = {}
+numbers_by_size: dict[int, list[int]] = {}
 for number, p in positions_for_number.items():
     numbers_by_size.setdefault(len(p), []).append(number)
 
 
-def observation(letters: str, position_variables: dict[str, z3.ArithRef]):
-    possibilities = []
+def observation(letters: str, position_variables: dict[str, z3.ArithRef]) -> z3.BoolRef:
+    possibilities: list[z3.BoolRef] = []
     for number in numbers_by_size[len(letters)]:
         possibilities.append(
             z3.And(
