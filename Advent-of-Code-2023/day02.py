@@ -9,7 +9,7 @@ def parse_line(line: str):
     game, rest = line.split(":")
     game_id = int(game.split(" ")[1])
     extractions = [[h.strip().split() for h in e.split(",")] for e in rest.split(";")]
-    return game_id, [{h[1]: int(h[0]) for h in e} for e in extractions]
+    return game_id, [{color: int(value) for value, color in e} for e in extractions]
 
 
 lines = [parse_line(l) for l in lines]
