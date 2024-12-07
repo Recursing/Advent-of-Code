@@ -16,28 +16,28 @@ part2 = set()
 while grid.get(position + direction):
     while grid.get(position + direction) == "#":
         direction *= 1j
+    position += direction
 
     # Part 2
     if (
-        (position + direction != initial_position)
-        and grid.get(position + direction)
-        and (position + direction) not in positions
+        (position != initial_position)
+        and grid.get(position)
+        and (position) not in positions
     ):
-        grid[position + direction] = "#"
-        test_position = position
+        test_position = position - direction
         test_direction = direction
+        grid[position] = "#"
         test_loop = set()
         while grid.get(test_position + test_direction):
             if (test_position, test_direction) in test_loop:
-                part2.add(position + direction)
+                part2.add(position)
                 break
             test_loop.add((test_position, test_direction))
             while grid.get(test_position + test_direction) == "#":
                 test_direction *= 1j
             test_position += test_direction
-        grid[position + direction] = "."
+        grid[position] = "."
 
-    position += direction
     positions.add(position)
 
 
