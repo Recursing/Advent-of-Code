@@ -18,12 +18,14 @@ ranges.sort(key=lambda r: r.start)
 
 
 def compact(ranges: list[range]) -> list[range]:
-    for idx, current in enumerate(ranges[:-1]):
-        next_range = ranges[idx + 1]
-        if current.stop in next_range or next_range.start in current:
-            merged = range(current.start, max(current.stop, next_range.stop))
-            return compact(ranges[:idx] + [merged] + ranges[idx + 2 :])
-    return ranges
+    stack = [ranges[0]]
+    for rng in ranges[1:]:
+        top = stack[-1]
+        if rng.start <= top.stop:
+            stack[-1] = range(top.start, max(top.stop, rng.stop))
+        else:
+            stack.append(rng)
+    return stack
 
 
 ranges = compact(ranges)
